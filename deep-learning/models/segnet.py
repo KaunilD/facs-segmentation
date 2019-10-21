@@ -22,25 +22,25 @@ class SegNet(nn.Module):
         self.encoder_2 = nn.Sequential(
             nn.Conv2d(
                 in_channels=16, out_channels=32,
-                kernel_size=2,
+                kernel_size=3,
                 padding=1
             ),
             nn.BatchNorm2d(32)
         )
         self.encoder_3 = nn.Sequential(
             nn.Conv2d(
-                in_channels=32, out_channels=64,
-                kernel_size=1,
+                in_channels=32, out_channels=32,
+                kernel_size=3,
                 padding=1
             ),
-            nn.BatchNorm2d(64)
+            nn.BatchNorm2d(32)
         )
 
         # Decoder layers
         self.decoder_3 = nn.Sequential(
             nn.ConvTranspose2d(
-                in_channels=64, out_channels=32,
-                kernel_size=1,
+                in_channels=32, out_channels=32,
+                kernel_size=3,
                 padding=1
             ),
             nn.BatchNorm2d(32)
@@ -48,7 +48,7 @@ class SegNet(nn.Module):
         self.decoder_2 = nn.Sequential(
             nn.ConvTranspose2d(
                 in_channels=32, out_channels=16,
-                kernel_size=2,
+                kernel_size=3,
                 padding=1
             ),
             nn.BatchNorm2d(16)
@@ -77,6 +77,7 @@ class SegNet(nn.Module):
 
         # Encoder Stage - 3
         size_3 = x_2.size()
+
         x_3 = F.relu(self.encoder_3(x_2))
         x_3, indices_3 = F.max_pool2d(x_3, kernel_size=2, stride=2, return_indices=True)
 
@@ -102,14 +103,15 @@ class SegNet(nn.Module):
         x_1d = F.relu(self.decoder_1(x_1d))
         size_1d = x_1d.size()
 
-        x_softmax = F.softmax(x_1d, size=1)
-
         if self.debug:
             print("size_d: {}".format(size_d))
             print()
             print("size_3d: {}".format(size_3d))
             print("size_2d: {}".format(size_2d))
             print("size_1d: {}".format(size_1d))
+
+
+        x_softmax = F.softmax(x_1d, dim=1)
 
 
         return x_1d, x_softmax

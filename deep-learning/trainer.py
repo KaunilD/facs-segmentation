@@ -87,7 +87,7 @@ def train(model, optimizer, criterion, device, dataloader):
         image, target = image.to(device), target.float().to(device)
         optimizer.zero_grad()
         output = model(image)
-        loss = criterion(output, target, device)
+        loss = criterion(output[0], target, device)
         loss.backward()
         optimizer.step()
         train_loss += loss.item()
@@ -105,7 +105,7 @@ def validate(model, criterion, device, dataloader):
             image, target = image.to(device), target.float().to(device)
 
             output = model(image)
-            loss = criterion(output, target, device)
+            loss = criterion(output[0], target, device)
             val_loss += loss.item()
             tbar.set_description('Val loss: %.3f' % (train_loss / (i + 1)))
     return val_loss
@@ -133,14 +133,14 @@ if __name__=="__main__":
     images = [images[i] for i in indices]
     target = [target[i] for i in indices]
 
-    train_dataset = FACSDataset(images[:1000], target[:1000], split='train', debug=False)
-    val_dataset = FACSDataset(images[1000:1100], target[1000:1100], split='val', debug=False)
+    train_dataset = FACSDataset(images[:25000], target[:25000], split='train', debug=False)
+    val_dataset = FACSDataset(images[25000:], target[25000:], split='val', debug=False)
 
     train_dataloader = torch_data.DataLoader(train_dataset, num_workers=0, batch_size=32)
     val_dataloader = torch_data.DataLoader(val_dataset, num_workers=0, batch_size=64)
 
 
-    model = segnet.SegNet(num_classes=2, debug=True)
+    model = segnet.SegNet(num_classes=2, debug=False)
     """
     if torch.cuda.device_count() > 1:
       print("Using ", torch.cuda.device_count(), " GPUs!")
