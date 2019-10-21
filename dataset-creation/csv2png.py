@@ -46,7 +46,8 @@ class Data:
 
             for i in np_shape:
                 if ( i[1] < 48 and i[1] > 0 ) and ( i[0] < 48 and i[0] > 0 ):
-                    face_mask[i[1]][i[0]] = 255
+                    cv2.circle(face_mask,(i[0], i[1]), 1, (255), -1)
+
 
             self._images.append(pixels)
             self._target.append(face_mask)
@@ -54,7 +55,7 @@ class Data:
             if save:
                 cv2.imwrite("{}/input/{}.png".format(out_dir, xdx), pixels)
                 cv2.imwrite("{}/target/{}.png".format(out_dir, xdx), face_mask)
-            
+
     def shape_to_np(self, shape, dtype="int"):
 
     	coords = np.zeros((shape.num_parts, 2), dtype=dtype)

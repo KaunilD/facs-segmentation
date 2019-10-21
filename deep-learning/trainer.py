@@ -131,11 +131,11 @@ if __name__=="__main__":
     print("torch.cuda.is_available()   =", torch.cuda.is_available())
     print("torch.cuda.device_count()   =", torch.cuda.device_count())
     print("torch.cuda.device('cuda')   =", torch.cuda.device('cuda'))
-    #print("torch.cuda.current_device() =", torch.cuda.current_device())
+    print("torch.cuda.current_device() =", torch.cuda.current_device())
     print()
 
     epochs = 30
-    device = torch.device("cpu" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     input_data_dir = '../dataset-creation/data_gt/input'
     target_data_dir = '../dataset-creation/data_gt/target'
@@ -181,19 +181,19 @@ if __name__=="__main__":
         outputs = test(model, device, val_dataloader)
 
         for idx, i in enumerate(outputs):
-            i = i[1].numpy()
+            i = i[1].cpu().numpy()
 
             mask = i[0][1]>i[0][0]
 
             mask = np.reshape(mask, (48, 48))
-            plt.imsave( "{}.png".format(idx), mask)
+            plt.imsave( "./results/images/{}.png".format(idx), mask)
 
         state = {
             'model': model.state_dict(),
             'optimizer': optimizer.state_dict()
         }
 
-        model_save_str = '{}-{}-{}.{}'.format(
+        model_save_str = './results/models/{}-{}-{}.{}'.format(
             "segnet", "bn2d", epoch, "pth"
         )
 
