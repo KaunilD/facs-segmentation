@@ -15,5 +15,5 @@
 
 | output                                                       | input                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![1](https://github.com/KaunilD/facs-segmentation/deep-learning/126.png) | ![1_input](https://github.com/KaunilD/facs-segmentation/dataset-creation/data_gt/target/2.png) |
+| ![1](deep-learning/126.png) | ![1_input](dataset-creation/data_gt/target/2.png) |
 | ![2](deep-learning/2.png) | ![2_input](dataset-creation/data_gt/target/127.png) |
