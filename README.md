@@ -15,5 +15,5 @@
 
 | output                                                       | input                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![1.png](C:\Users\dhruv\Development\git\facs-segmentation\deep-learning\126.png) | ![](C:\Users\dhruv\Development\git\facs-segmentation\dataset-creation\data_gt\target\2.png) |
-| ![](C:\Users\dhruv\Development\git\facs-segmentation\deep-learning\2.png) | ![](C:\Users\dhruv\Development\git\facs-segmentation\dataset-creation\data_gt\target\127.png) |
+| ![1](deep-learning/126.png) | ![1_input](dataset-creation/data_gt/target/2.png) |
+| ![2](deep-learning/2.png) | ![2_input](dataset-creation/data_gt/target/127.png) |
