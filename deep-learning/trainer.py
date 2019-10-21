@@ -14,7 +14,7 @@ import torch.nn as nn
 import torch.nn.init as init
 import torch.nn.functional as F
 from models import segnet
-
+import matplotlib.pyplot as plt
 Image.MAX_IMAGE_PIXELS = None
 class FACSDataset(torch_data.Dataset):
     def __init__(self,
@@ -110,6 +110,23 @@ def validate(model, criterion, device, dataloader):
             tbar.set_description('Val loss: %.3f' % (train_loss / (i + 1)))
     return val_loss
 
+
+def test(model, device, dataloader):
+    model.eval()
+    val_loss = 0.0
+    tbar = tqdm(dataloader)
+    num_samples = len(dataloader)
+    outputs = []
+    with torch.no_grad():
+        for i, sample in enumerate(tbar):
+            image = sample[0].float()
+            image = image.to(device)
+            outputs.append(model(image))
+            tbar.set_description('{}%'.format(int((i/num_samples)*100)))
+
+    return outputs
+
+
 if __name__=="__main__":
     print("torch.cuda.is_available()   =", torch.cuda.is_available())
     print("torch.cuda.device_count()   =", torch.cuda.device_count())
@@ -160,7 +177,16 @@ if __name__=="__main__":
 
     for epoch in range(epochs):
         train_loss = train(model, optimizer, criterion, device, train_dataloader)
-        val_loss = validate(model, criterion, device, train_dataloader)
+        val_loss = validate(model, criterion, device, val_dataloader)
+        outputs = test(model, device, val_dataloader)
+
+        for idx, i in enumerate(outputs):
+            i = i[1].numpy()
+
+            mask = i[0][1]>i[0][0]
+
+            mask = np.reshape(mask, (48, 48))
+            plt.imsave( "{}.png".format(idx), mask)
 
         state = {
             'model': model.state_dict(),
