@@ -126,3 +126,5 @@ dataset-creation/*/*.png
 data/*/*/*.png
 data/*/*/*.jpg
 data/*/*/*.pts
+deep-learning/images/*
+*.zip

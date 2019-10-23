@@ -184,6 +184,7 @@ if __name__=="__main__":
     #assert len(images) == len(target), "Input and labels dont match!"
 
     indices = np.random.permutation(10600)
+    #indices = np.load("indices.npy")
     np.save("indices", indices)
     images = [images[i] for i in indices]
     target = [target[i] for i in indices]

@@ -1,6 +1,6 @@
 #### Deep(er) look into Facial landmarks detection-A semantic segmentation based approach.
 
-##### Status: Had to take a break, USFA folks arriving today. At epoch 14/30
+##### Status: Had to take a break, USFA folks arriving today. At epoch 18/30
 
 ###### Key dependencies:
 
@@ -19,12 +19,12 @@
 
 
 
-###### Initial Results: Epoch 14
+###### Initial Results: Epoch 18
 
-| output                           |
-| -------------------------------- |
-| ![1](deep-learning/images/1.png) |
-| ![1](deep-learning/images/2.png) |
-| ![1](deep-learning/images/3.png) |
-| ![1](deep-learning/images/4.png) |
-| ![1](deep-learning/images/5.png) |
+| output                                   |
+| ---------------------------------------- |
+| ![1](deep-learning/results/images/1.png) |
+| ![1](deep-learning/results/images/2.png) |
+| ![1](deep-learning/results/images/3.png) |
+| ![1](deep-learning/results/images/4.png) |
+| ![1](deep-learning/results/images/5.png) |
