@@ -1,6 +1,6 @@
 #### Deep(er) look into Facial landmarks detection-A semantic segmentation based approach.
 
-
+##### Status: Had to take a break, USFA folks arriving today. At epoch 14/30
 
 ###### Key dependencies:
 
@@ -10,8 +10,8 @@
 
 ##### Overview
 
-1. [Dataset Creation](https://github.com/KaunilD/facs-segmentation/blob/master/dataset-creation/csv2png.py):
-   1. Facial (uncropped and unaligned) images obtained from FER2013 dataset (ds).
+1. [Dataset Creation](https://github.com/KaunilD/facs-segmentation/blob/master/dataset-creation/csv2png_lfw.py):
+   1. Facial (uncropped and unaligned) images obtained from LFW dataset (ds).
    2. 64 Landmarks for each of the images from ds the have been extracted using [dlib](http://dlib.net/) library.
 2. [Model Training](https://github.com/KaunilD/facs-segmentation/blob/master/deep-learning/trainer.py):
    1. Pairs of images (grayscale) and their respective landmark masks are input to the condensed [SegNet](https://arxiv.org/abs/1511.00561) model for pixel level segmentation.
@@ -19,9 +19,12 @@
 
 
 
-###### Initial Results: Epoch 6
+###### Initial Results: Epoch 14
 
-| output                                                       | input                                                        |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![1](deep-learning/126.png) | ![1_input](dataset-creation/data_gt/target/2.png) |
-| ![2](deep-learning/2.png) | ![2_input](dataset-creation/data_gt/target/127.png) |
+| output                           |
+| -------------------------------- |
+| ![1](deep-learning/images/1.png) |
+| ![1](deep-learning/images/2.png) |
+| ![1](deep-learning/images/3.png) |
+| ![1](deep-learning/images/4.png) |
+| ![1](deep-learning/images/5.png) |

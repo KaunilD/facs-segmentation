@@ -46,7 +46,7 @@ class Data:
 
             for i in np_shape:
                 if ( i[1] < 48 and i[1] > 0 ) and ( i[0] < 48 and i[0] > 0 ):
-                    cv2.circle(face_mask,(i[0], i[1]), 1, (255), -1)
+                    cv2.circle(face_mask,(i[0], i[1]), 2, (255), -1)
 
 
             self._images.append(pixels)

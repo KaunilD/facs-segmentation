@@ -121,3 +121,8 @@ dmypy.json
 .pyre/
 *.csv
 *.dat
+dataset-creation/*/*/*.png
+dataset-creation/*/*.png
+data/*/*/*.png
+data/*/*/*.jpg
+data/*/*/*.pts
