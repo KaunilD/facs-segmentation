@@ -12,7 +12,8 @@
 
 1. [Dataset Creation](https://github.com/KaunilD/facs-segmentation/blob/master/dataset-creation/csv2png_lfw.py):
    1. Facial (uncropped and unaligned) images obtained from LFW dataset (ds).
-   2. 64 Landmarks for each of the images from ds the have been extracted using [dlib](http://dlib.net/) library.
+   2. 68 Landmarks for each of the images from ds the have been extracted using [dlib](http://dlib.net/) library.
+   3. Indices for train, test and validation splits are can be found [here](https://github.com/KaunilD/facs-segmentation/blob/master/deep-learning/indices.npy).
 2. [Model Training](https://github.com/KaunilD/facs-segmentation/blob/master/deep-learning/trainer.py):
    1. Pairs of images (grayscale) and their respective landmark masks are input to the condensed [SegNet](https://arxiv.org/abs/1511.00561) model for pixel level segmentation.
    2. [Condensed implementation]() has fewer layers and smaller filter sizes to prevent overfitting of a relatively lower dimensional dataset as compared to the one discussed in original implementation.
